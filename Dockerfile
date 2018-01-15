@@ -13,7 +13,7 @@ RUN HBASE_BRANCH=1.4 \
  && echo "root:${ROOT_PASSWORD}" | chpasswd \
 
  && unzip -x -q /root/hbase-branch-$HBASE_BRANCH.zip / && cd hbase-branch-$HBASE_BRANCH && mvn -DskipTests package assembly:single && cd ../ \
- && mv /root/hbase-branch-$HBASE_BRANCH/hbase-assembly/target/*-bin.tar.gz /root/hbase-$HBASE_BRANCH.-bin.tar.gz \
+ && cp /root/hbase-branch-$HBASE_BRANCH/hbase-assembly/target/*-bin.tar.gz /root/hbase-$HBASE_BRANCH.-bin.tar.gz \
  && cd /root/ && tar -zcf m2.tar.gz .m2/ \
  && apk del maven && rm -rf /usr/share/java/maven-* /root/.m2 /root/.wget* /root/hbase-branch-$HBASE_BRANCH \
  
