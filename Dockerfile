@@ -10,6 +10,8 @@ RUN HBASE_BRANCH=1.4 \
  
  && sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+ && ssh-keygen -A \
+ && ssh-keygen -t rsa -f /root/.ssh/id_rsa -P '' \
  && echo "root:${ROOT_PASSWORD}" | chpasswd \
 
  && unzip -x -q /root/hbase-branch-$HBASE_BRANCH.zip / && cd hbase-branch-$HBASE_BRANCH && mvn -DskipTests package assembly:single && cd ../ \
