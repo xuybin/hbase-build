@@ -12,7 +12,6 @@ RUN HBASE_BRANCH=1.4 \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
  && ssh-keygen -A \
  && ssh-keygen -t rsa -f /root/.ssh/id_rsa -P '' \
- && echo "root:${ROOT_PASSWORD}" | chpasswd \
 
  && unzip -x -q /root/hbase-branch-$HBASE_BRANCH.zip / && cd hbase-branch-$HBASE_BRANCH && mvn -DskipTests package assembly:single && cd ../ \
  && cp /hbase-branch-$HBASE_BRANCH/hbase-assembly/target/*-bin.tar.gz /root/ \
@@ -20,6 +19,7 @@ RUN HBASE_BRANCH=1.4 \
  && apk del maven && rm -rf /usr/share/java/maven-* /root/.m2 /root/.wget* /root/hbase-branch-$HBASE_BRANCH \
  
  && echo -e '#!/bin/sh\n'\
+'echo "root:${ROOT_PASSWORD}" | chpasswd '\
 'exec /usr/sbin/sshd -D '\
 '\n'\
 >/usr/local/bin/entrypoint.sh \
