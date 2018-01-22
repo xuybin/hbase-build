@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 VOLUME ["/hdfs"]
-RUN HBASE_BRANCH=1.4 \
+RUN HBASE_BRANCH=1.2 \
  && URL="https://codeload.github.com/apache/hbase/zip/branch-$HBASE_BRANCH" \
 
  && apk --update add --no-cache maven wget openssh bash openjdk8 \
