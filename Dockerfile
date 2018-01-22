@@ -19,7 +19,7 @@ RUN HBASE_BRANCH=1.2 \
  && apk del maven && rm -rf /usr/share/java/maven-* /root/.m2 /root/.wget* /root/hbase-branch-$HBASE_BRANCH \
  
  && echo -e '#!/bin/sh\n'\
-'echo "root:${ROOT_PASSWORD}" | chpasswd '\
+'echo "root:${ROOT_PASSWORD}" | chpasswd\n'\
 'exec /usr/sbin/sshd -D '\
 '\n'\
 >/usr/local/bin/entrypoint.sh \
